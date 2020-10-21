@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OrderManager
 {
-    class Order
+    public class Order
     {
         public string Item { get; set; }
         public string Store { get; set; }

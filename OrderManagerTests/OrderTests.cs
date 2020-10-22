@@ -11,8 +11,6 @@ namespace OrderManager.Tests
         [TestMethod()]
         public void OrderTest()
         {
-
-
             string item = "basketball";
             string store = "dick's sporting goods";
             double price = 15.99;
@@ -26,6 +24,22 @@ namespace OrderManager.Tests
             Assert.AreEqual(price, order.Price);
             Assert.AreEqual(DateTime.Parse(orderDate), order.OrderDate);
             Assert.AreEqual(DateTime.Parse(arrivalDate), order.ArrivalDate);
+        }
+
+        public void DaysUntilArrive() 
+        { 
+        }
+
+        public void Arrived()
+        {
+        }
+
+        public void Cancelled()
+        {
+        }
+
+        public void SortArrivingFirst()
+        {
         }
     }
 }

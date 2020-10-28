@@ -24,13 +24,13 @@ namespace OrderManager
         public void Display()
         {
             Console.WriteLine();
-            Console.WriteLine("---------------------------");
+            Console.WriteLine("--------------------------------------------------------");
             Console.WriteLine($" Item: {Item}");
             Console.WriteLine($" From: {Store}");
             Console.WriteLine($" Price: ${Price}");
             Console.WriteLine($" Ordered on: {OrderDate.ToLongDateString()}");
             Console.WriteLine($" Arriving by: {ArrivalDate.ToLongDateString()}");
-            Console.WriteLine("---------------------------"); ;
+            Console.WriteLine("--------------------------------------------------------"); ;
         }
 
         public static Order CreateOrder(string str)

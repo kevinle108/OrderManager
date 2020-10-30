@@ -10,6 +10,8 @@ namespace OrderManager
 
         static void Main(string[] args)
         {
+            MainMenu();
+            return;
             Console.WriteLine("Starting program...");
             string test0 = "mouse,amazon,12.50,10/16,10/19";
             string test1 = "water bottle,walmart,5.99,10/02,10/24";
@@ -30,7 +32,7 @@ namespace OrderManager
             Console.WriteLine();
             Console.WriteLine("Would you like to import orders?");
             input = Console.ReadLine();
-            if (input == "yes")
+            if (input.ToUpper() == "YES" || input.ToUpper() == "Y")
             {
                 StreamReader file = new StreamReader("orders.csv");
                 string line;
@@ -47,6 +49,22 @@ namespace OrderManager
             }
             orders.ForEach((order) => order.Display());
 
+        }
+
+        private static void MainMenu()
+        {
+            Console.WriteLine("*******************************************************");
+            Console.WriteLine("        Welcome to the the Order Manager Program       ");
+            Console.WriteLine("*******************************************************");
+            Console.WriteLine("This app will help you manage your online purchases");
+            Console.WriteLine("Select an option to begin:");
+            Console.WriteLine("[1] Add an order");
+            Console.WriteLine("[2] Import orders");
+            Console.WriteLine("[3] View all orders");
+            Console.WriteLine("[4] Search for an order");
+            Console.WriteLine("[5] Delete an order");
+            Console.WriteLine("[6] Sort orders");
+            Console.WriteLine("[7] Order timeline");
         }
     }
 }

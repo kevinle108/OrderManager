@@ -93,14 +93,27 @@ namespace OrderManager
                     return true;
                 case "2":
                     Console.WriteLine("You entered 2. To add an order, please enter the order info in the following format:");
-                    Console.WriteLine("             item name, store, cost, order date, arrival date");
+                    Console.WriteLine(" item name, store, cost, order date, arrival date");
                     Console.WriteLine("For example: 'computer, target, 495.95, 10/11, 10/19'");
                     string inputAddOrder = Console.ReadLine();
                     orders.Add(Order.CreateOrder(inputAddOrder));
                     Console.WriteLine("Success! Your order has been added.");
                     return true;
                 case "3":
-                    Console.WriteLine("You entered 3.");
+                    Console.WriteLine("You entered 3. Importing orders from 'orders.csv' file");
+                    StreamReader file = new StreamReader("orders.csv");
+                    string line;
+                    int counter = 1;
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine($"Line: {counter} reads '{line}'");
+                        counter++;
+
+                        //add to orders list
+                        orders.Add(Order.CreateOrder(line));
+                    }
+                    Console.WriteLine("Import successful!");
                     return true;
                 case "4":
                     Console.WriteLine("You entered 4.");

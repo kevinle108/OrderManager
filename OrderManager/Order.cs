@@ -36,7 +36,8 @@ namespace OrderManager
         public static Order CreateOrder(string str)
         {
             string[] arr = str.Split(',');
-            return new Order(arr[0], arr[1], Double.Parse(arr[2]), arr[3], arr[4]);
+            // trim excess spaces around each string
+            return new Order(arr[0].Trim(), arr[1].Trim(), Double.Parse(arr[2].Trim()), arr[3].Trim(), arr[4].Trim());
         }
 
 

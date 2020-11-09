@@ -92,7 +92,12 @@ namespace OrderManager
                     DisplayAll(orders);
                     return true;
                 case "2":
-                    Console.WriteLine("You entered 2.");
+                    Console.WriteLine("You entered 2. To add an order, please enter the order info in the following format:");
+                    Console.WriteLine("             item name, store, cost, order date, arrival date");
+                    Console.WriteLine("For example: 'computer, target, 495.95, 10/11, 10/19'");
+                    string inputAddOrder = Console.ReadLine();
+                    orders.Add(Order.CreateOrder(inputAddOrder));
+                    Console.WriteLine("Success! Your order has been added.");
                     return true;
                 case "3":
                     Console.WriteLine("You entered 3.");

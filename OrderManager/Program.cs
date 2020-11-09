@@ -72,12 +72,14 @@ namespace OrderManager
 
         private static bool MainMenu(List<Order> orders)
         {
-            
-            Console.WriteLine("\r\nNavigation menu:");
+
+            Console.WriteLine("\r\n------------------------");
+            Console.WriteLine("    Navigation Menu");
+            Console.WriteLine("------------------------");
             Console.WriteLine("[1] View orders");
             Console.WriteLine("[2] Add an order");
             Console.WriteLine("[3] Import orders");
-            Console.WriteLine("[4] Search for an order");
+            Console.WriteLine("[4] Export orders");
             Console.WriteLine("[5] Delete an order");
             Console.WriteLine("[6] Sort orders");
             Console.WriteLine("[7] Order timeline");
@@ -100,20 +102,20 @@ namespace OrderManager
                     Console.WriteLine("Success! Your order has been added.");
                     return true;
                 case "3":
-                    Console.WriteLine("You entered 3. Importing orders from 'orders.csv' file");
+                    Console.WriteLine("You entered 3. Importing orders from 'orders.csv' file...");
                     StreamReader file = new StreamReader("orders.csv");
                     string line;
                     int counter = 1;
                     while ((line = file.ReadLine()) != null)
                     {
-                        Console.WriteLine();
-                        Console.WriteLine($"Line: {counter} reads '{line}'");
+                        //Console.WriteLine();
+                        //Console.WriteLine($"Line: {counter} reads '{line}'");
                         counter++;
 
                         //add to orders list
                         orders.Add(Order.CreateOrder(line));
                     }
-                    Console.WriteLine("Import successful!");
+                    Console.WriteLine("...Import successful!");
                     return true;
                 case "4":
                     Console.WriteLine("You entered 4.");

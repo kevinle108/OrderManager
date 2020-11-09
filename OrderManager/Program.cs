@@ -95,15 +95,15 @@ namespace OrderManager
                     return true;
                 case "2":
                     Console.WriteLine("You entered 2. To add an order, please enter the order info in the following format:");
-                    Console.WriteLine(" item name, store, cost, order date, arrival date");
+                    Console.WriteLine(" item name, store, cost (exclude $ sign), order date (month/day), arrival date (month/day)");
                     Console.WriteLine("For example: 'computer, target, 495.95, 10/11, 10/19'");
                     string inputAddOrder = Console.ReadLine();
                     orders.Add(Order.CreateOrder(inputAddOrder));
-                    Console.WriteLine("Success! Your order has been added.");
+                    Console.WriteLine("...Success! Your order has been added.");
                     return true;
                 case "3":
-                    Console.WriteLine("You entered 3. Importing orders from 'orders.csv' file...");
-                    StreamReader file = new StreamReader("orders.csv");
+                    Console.WriteLine("You entered 3. Importing orders from 'Orders.csv' file...");
+                    StreamReader file = new StreamReader("Orders.csv");
                     string line;
                     int counter = 1;
                     while ((line = file.ReadLine()) != null)
@@ -118,7 +118,16 @@ namespace OrderManager
                     Console.WriteLine("...Import successful!");
                     return true;
                 case "4":
-                    Console.WriteLine("You entered 4.");
+                    Console.WriteLine("You entered 4. Exporting all orders to Output.txt file...");
+                    FileStream fs = new FileStream("Output.txt", FileMode.Create);
+                    // First, save the standard output.
+                    TextWriter tmp = Console.Out;
+                    StreamWriter sw = new StreamWriter(fs);
+                    Console.SetOut(sw);
+                    DisplayAll(orders);
+                    Console.SetOut(tmp);
+                    Console.WriteLine("...Success! All orders were exported to Output.txt");
+                    sw.Close();
                     return true;
                 case "5":
                     Console.WriteLine("You entered 5.");

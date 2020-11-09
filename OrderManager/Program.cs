@@ -8,9 +8,17 @@ namespace OrderManager
     {
         
 
-        static void Main(string[] args)
+        static void Main()
         {
-            MainMenu();
+            bool showMenu = true;
+            while (showMenu)
+            {
+                showMenu = MainMenu();
+            }
+
+            Console.WriteLine("Thank you for using the Order Manager Program!");
+            Console.WriteLine("Program exiting...");
+
             return;
             Console.WriteLine("Starting program...");
             string test0 = "mouse,amazon,12.50,10/16,10/19";
@@ -51,20 +59,54 @@ namespace OrderManager
 
         }
 
-        private static void MainMenu()
+        private static bool MainMenu()
         {
+            Console.WriteLine();
             Console.WriteLine("*******************************************************");
-            Console.WriteLine("        Welcome to the the Order Manager Program       ");
+            Console.WriteLine("        Welcome to the Order Manager Program       ");
             Console.WriteLine("*******************************************************");
             Console.WriteLine("This app will help you manage your online purchases");
-            Console.WriteLine("Select an option to begin:");
-            Console.WriteLine("[1] Add an order");
-            Console.WriteLine("[2] Import orders");
-            Console.WriteLine("[3] View all orders");
+            Console.WriteLine("\r\nSelect an option to begin:");
+            Console.WriteLine("[1] View orders");
+            Console.WriteLine("[2] Add an order");
+            Console.WriteLine("[3] Import orders");
             Console.WriteLine("[4] Search for an order");
             Console.WriteLine("[5] Delete an order");
             Console.WriteLine("[6] Sort orders");
             Console.WriteLine("[7] Order timeline");
+            Console.WriteLine("[8] Exit");
+            Console.Write("\r\nSelect an option: ");
+            
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    Console.WriteLine("You entered 1!");
+                    return true;
+                case "2":
+                    Console.WriteLine("You entered 2!");
+                    return true;
+                case "3":
+                    Console.WriteLine("You entered 3!");
+                    return true;
+                case "4":
+                    Console.WriteLine("You entered 4!");
+                    return true;
+                case "5":
+                    Console.WriteLine("You entered 5!");
+                    return true;
+                case "6":
+                    Console.WriteLine("You entered 6!");
+                    return true;
+                case "7":
+                    Console.WriteLine("You entered 7!");
+                    return true;
+                case "8":
+                    Console.WriteLine("You entered 8!");
+                    return false;
+                default:
+                    return true;
+            }
         }
     }
 }

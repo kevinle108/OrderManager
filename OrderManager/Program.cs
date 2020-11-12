@@ -90,18 +90,27 @@ namespace OrderManager
             switch (Console.ReadLine())
             {
                 case "1":
+                    Console.Clear();
                     Console.WriteLine("You entered 1. Displaying all orders:");
                     DisplayAll(orders);
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadLine();
+                    Console.Clear();
                     return true;
                 case "2":
+                    Console.Clear();
                     Console.WriteLine("You entered 2. To add an order, please enter the order info in the following format:");
                     Console.WriteLine(" item name, store, cost (exclude $ sign), order date (month/day), arrival date (month/day)");
                     Console.WriteLine("For example: 'computer, target, 495.95, 10/11, 10/19'");
                     string inputAddOrder = Console.ReadLine();
                     orders.Add(Order.CreateOrder(inputAddOrder));
                     Console.WriteLine("...Success! Your order has been added.");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadLine();
+                    Console.Clear();
                     return true;
                 case "3":
+                    Console.Clear();
                     Console.WriteLine("You entered 3. Importing orders from 'Orders.csv' file...");
                     StreamReader file = new StreamReader("Orders.csv");
                     string line;
@@ -116,8 +125,12 @@ namespace OrderManager
                         orders.Add(Order.CreateOrder(line));
                     }
                     Console.WriteLine("...Import successful!");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadLine();
+                    Console.Clear();
                     return true;
                 case "4":
+                    Console.Clear();
                     Console.WriteLine("You entered 4. Exporting all orders to Output.txt file...");
                     FileStream fs = new FileStream("Output.txt", FileMode.Create);
                     // First, save the standard output.
@@ -128,6 +141,9 @@ namespace OrderManager
                     Console.SetOut(tmp);
                     Console.WriteLine("...Success! All orders were exported to Output.txt");
                     sw.Close();
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadLine();
+                    Console.Clear();
                     return true;
                 case "5":
                     Console.WriteLine("You entered 5.");

@@ -103,16 +103,41 @@ namespace OrderManager
                     Console.WriteLine("item, store, cost (exclude $ sign), order date (month/day), arrival date (month/day)");
                     Console.WriteLine("For example:");
                     Console.WriteLine("computer, target, 495.95, 10/11, 10/19");
-                    string inputAddOrder = Console.ReadLine();
-                    orders.Add(Order.CreateOrder(inputAddOrder));
-                    Console.WriteLine("...Success! Your order has been added.");
+                    Console.Write("\r\nEnter a new order: ");
+                    try
+                    {
+                        string inputAddOrder = Console.ReadLine();
+                        orders.Add(Order.CreateOrder(inputAddOrder));
+                        Console.WriteLine("...Success! Your order has been added.");
+                        
+                    }
+                    catch (Exception)
+                    {
+
+                        Console.WriteLine("Error: The format of the order info was not correct.");
+                    }
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
                 case "3":
                     Console.Clear();
-                    Console.WriteLine("You entered 3. Importing orders from 'Orders.csv' file...");
+                    Console.WriteLine("You entered 3. This will import orders from 'Orders.csv' file.");
+                    Console.WriteLine("Would you like to continue? (Y/n)");
+                    Console.Write("\r\nSelect an option: ");
+                    switch (Console.ReadLine().ToUpper())
+                    {
+                        case "Y":
+                            break;
+                        case "YES":
+                            break;
+                        default:
+                            Console.WriteLine("Import cancelled. Press the return key to continue...");
+                            Console.ReadLine();
+                            Console.Clear();
+                            return true;
+                    }
+
                     StreamReader file = new StreamReader("Orders.csv");
                     string line;
                     int counter = 1;
@@ -132,7 +157,21 @@ namespace OrderManager
                     return true;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("You entered 4. Exporting all orders to Output.txt file...");
+                    Console.WriteLine("You entered 4. This will export the list of orders to 'Output.txt' file.");
+                    Console.WriteLine("Would you like to continue? (Y/n)");
+                    Console.Write("\r\nSelect an option: ");
+                    switch (Console.ReadLine().ToUpper())
+                    {
+                        case "Y":
+                            break;
+                        case "YES":
+                            break;
+                        default:
+                            Console.WriteLine("Export cancelled. Press the return key to continue...");
+                            Console.ReadLine();
+                            Console.Clear();
+                            return true;
+                    }
                     FileStream fs = new FileStream("Output.txt", FileMode.Create);
                     // First, save the standard output.
                     TextWriter tmp = Console.Out;

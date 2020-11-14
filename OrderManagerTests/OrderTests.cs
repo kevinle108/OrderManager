@@ -46,35 +46,49 @@ namespace OrderManager.Tests
         }
 
         [TestMethod()]
-        public void DisplayTest()
+        public void OrderTest2()
         {
-            Assert.Fail();
+            string item = "picture frMethod()]ame";
+            string store = "walgreens";
+            double price = 3.99;
+            string orderDate = "10/28";
+            string arrivalDate = "10/30";
+
+            var order = new Order(item, store, price, orderDate, arrivalDate);
+
+            Assert.AreEqual(item.ToUpper(), order.Item);
+            Assert.AreEqual(store.ToUpper(), order.Store);
+            Assert.AreEqual(price, order.Price);
+            Assert.AreEqual(DateTime.Parse(orderDate), order.OrderDate);
+            Assert.AreEqual(DateTime.Parse(arrivalDate), order.ArrivalDate);
         }
 
-        [TestMethod()]
-        public void CreateOrderTest()
-        {
-            Assert.Fail();
-        }
 
-        [TestMethod()]
-        public void DaysUntilArrive()
-        {
-        }
 
-        [TestMethod()]
-        public void Arrived()
-        {
-        }
+        //[TestMethod()]
+        //public void CreateOrderTest()
+        //{
+        //    Assert.Fail();
+        //}
 
-        [TestMethod()]
-        public void Cancelled()
-        {
-        }
+        //[TestMethod()]
+        //public void DaysUntilArrive()
+        //{
+        //}
 
-        [TestMethod()]
-        public void SortArrivingFirst()
-        {
-        }
+        //[TestMethod()]
+        //public void Arrived()
+        //{
+        //}
+
+        //[TestMethod()]
+        //public void Cancelled()
+        //{
+        //}
+
+        //[TestMethod()]
+        //public void SortArrivingFirst()
+        //{
+        //}
     }
 }

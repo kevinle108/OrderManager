@@ -15,7 +15,7 @@ namespace OrderManager
             Console.WriteLine("*******************************************************");
             Console.WriteLine("        Welcome to the Order Manager Program       ");
             Console.WriteLine("*******************************************************");
-            Console.WriteLine("This app will help you manage your online purchases");
+            Console.WriteLine("This app will help you keep track of your online purchases and when they will arrive");
 
             // create 2 sample orders 
             Order order0 = Order.CreateOrder("mouse,amazon,12.50,10/16,10/19"); 
@@ -33,41 +33,6 @@ namespace OrderManager
 
             Console.WriteLine("Thank you for using the Order Manager Program!");
             Console.WriteLine("Program exiting...");
-
-            return;
-            
-            //Order testOrder = new Order("mouse","amazon",12.99,"10/16","10/19");
-            //testOrder.Display();
-            
-            //orders.ForEach((order) => order.Display());
-            //Console.WriteLine("Please enter an order:");
-            // computer,target,495.95,10/11,10/19
-            //string input = Console.ReadLine();
-            //Order orderFromInput = Order.CreateOrder(input);
-            //orders.Add(orderFromInput);
-            //orders.ForEach((order) => order.Display());
-            //File.WriteAllText("output.txt", test0);
-
-            //Console.WriteLine();
-            //Console.WriteLine("Would you like to import orders?");
-            //input = Console.ReadLine();
-            //if (input.ToUpper() == "YES" || input.ToUpper() == "Y")
-            //{
-            //    StreamReader file = new StreamReader("orders.csv");
-            //    string line;
-            //    int counter = 1;
-            //    while ((line = file.ReadLine()) != null)
-            //    {
-            //        Console.WriteLine();
-            //        Console.WriteLine($"Line: {counter} reads '{line}'");
-            //        counter++;
-
-            //        //add to orders list
-            //        orders.Add(Order.CreateOrder(line));
-            //    }
-            //}
-            //orders.ForEach((order) => order.Display());
-
         }
 
         private static bool MainMenu(List<Order> orders)
@@ -76,11 +41,14 @@ namespace OrderManager
             Console.WriteLine("\r\n------------------------");
             Console.WriteLine("    Navigation Menu");
             Console.WriteLine("------------------------");
-            Console.WriteLine("[1] View orders");
+            Console.WriteLine("[1] View all orders");
+
             Console.WriteLine("[2] Add an order");
-            Console.WriteLine("[3] Import orders");
-            Console.WriteLine("[4] Export orders");
-            Console.WriteLine("[5] Delete an order");
+            Console.WriteLine("[3] Delete an order");
+
+            Console.WriteLine("[4] Import orders");
+            Console.WriteLine("[5] Export orders");
+            
             Console.WriteLine("[6] Sort orders");
             Console.WriteLine("[7] Order timeline");
             Console.WriteLine("[8] Exit");
@@ -104,25 +72,49 @@ namespace OrderManager
                     Console.WriteLine("For example:");
                     Console.WriteLine("computer, target, 495.95, 10/11, 10/19");
                     Console.Write("\r\nEnter a new order: ");
-                    try
-                    {
-                        string inputAddOrder = Console.ReadLine();
-                        orders.Add(Order.CreateOrder(inputAddOrder));
-                        Console.WriteLine("...Success! Your order has been added.");
-                        
-                    }
-                    catch (Exception)
-                    {
-
-                        Console.WriteLine("Error: The format of the order info was not correct.");
-                    }
+                    ImportOrders(orders);
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
                 case "3":
+                    Console.WriteLine("You entered 3. Select the order to be delete by entering the number next to the order:");
+                    Console.WriteLine();
+                    for (int i = 0; i < orders.Count; i++)
+                    {
+                        Console.WriteLine($"[{i+1}]: {orders[i].Item} from {orders[i].Store} on {orders[i].OrderDate.ToString("MM/dd/yyyy")}");
+                    }
+                    Console.WriteLine();
+                    Console.Write("\r\nSelect an order to delete: ");
+                    try
+                    {
+                        int orderToDelete = Int32.Parse(Console.ReadLine());
+                        if (orderToDelete > 0 && orderToDelete <= orders.Count)
+                        {
+                            Console.WriteLine($"Deleting Order #{orderToDelete}...");
+                            Console.WriteLine("...Success!");
+                            orders.RemoveAt(orderToDelete - 1);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: Invalid selection, no orders were deleted");
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Error2: Invalid selection, no orders were deleted");
+                    }
+
+
+                    Console.WriteLine("Press the return key to continue...");
+                    Console.ReadLine();
                     Console.Clear();
-                    Console.WriteLine("You entered 3. This will import orders from 'Orders.csv' file.");
+                    return true;
+
+
+                case "4":
+                    Console.Clear();
+                    Console.WriteLine("You entered 4. This will import orders from 'Orders.csv' file.");
                     Console.WriteLine("Would you like to continue? (Y/n)");
                     Console.Write("\r\nSelect an option: ");
                     switch (Console.ReadLine().ToUpper())
@@ -155,9 +147,10 @@ namespace OrderManager
                     Console.ReadLine();
                     Console.Clear();
                     return true;
-                case "4":
+
+                case "5":
                     Console.Clear();
-                    Console.WriteLine("You entered 4. This will export the list of orders to 'Output.txt' file.");
+                    Console.WriteLine("You entered 5. This will export the list of orders to 'Output.txt' file.");
                     Console.WriteLine("Would you like to continue? (Y/n)");
                     Console.Write("\r\nSelect an option: ");
                     switch (Console.ReadLine().ToUpper())
@@ -185,9 +178,7 @@ namespace OrderManager
                     Console.ReadLine();
                     Console.Clear();
                     return true;
-                case "5":
-                    Console.WriteLine("You entered 5.");
-                    return true;
+
                 case "6":
                     Console.WriteLine("You entered 6.");
                     return true;
@@ -200,6 +191,22 @@ namespace OrderManager
                 default:
                     Console.Clear();
                     return true;
+            }
+        }
+
+        private static void ImportOrders(List<Order> orders)
+        {
+            try
+            {
+                string inputAddOrder = Console.ReadLine();
+                orders.Add(Order.CreateOrder(inputAddOrder));
+                Console.WriteLine("...Success! Your order has been added.");
+
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Error: The format of the order info was not correct.");
             }
         }
 

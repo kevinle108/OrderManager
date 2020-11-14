@@ -93,19 +93,20 @@ namespace OrderManager
                     Console.Clear();
                     Console.WriteLine("You entered 1. Displaying all orders:");
                     DisplayAll(orders);
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
                 case "2":
                     Console.Clear();
                     Console.WriteLine("You entered 2. To add an order, please enter the order info in the following format:");
-                    Console.WriteLine(" item name, store, cost (exclude $ sign), order date (month/day), arrival date (month/day)");
-                    Console.WriteLine("For example: 'computer, target, 495.95, 10/11, 10/19'");
+                    Console.WriteLine("item, store, cost (exclude $ sign), order date (month/day), arrival date (month/day)");
+                    Console.WriteLine("For example:");
+                    Console.WriteLine("computer, target, 495.95, 10/11, 10/19");
                     string inputAddOrder = Console.ReadLine();
                     orders.Add(Order.CreateOrder(inputAddOrder));
                     Console.WriteLine("...Success! Your order has been added.");
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
@@ -125,7 +126,7 @@ namespace OrderManager
                         orders.Add(Order.CreateOrder(line));
                     }
                     Console.WriteLine("...Import successful!");
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
@@ -141,7 +142,7 @@ namespace OrderManager
                     Console.SetOut(tmp);
                     Console.WriteLine("...Success! All orders were exported to Output.txt");
                     sw.Close();
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
@@ -158,6 +159,7 @@ namespace OrderManager
                     Console.WriteLine("You entered 8.");
                     return false;
                 default:
+                    Console.Clear();
                     return true;
             }
         }

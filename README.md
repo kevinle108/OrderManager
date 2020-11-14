@@ -1,2 +1,2 @@
 # OrderManager
-A C# program to help me manage my online purchases
+A C# program to help me view and manage my online purchases

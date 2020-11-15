@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OrderManager
 {
@@ -120,7 +121,6 @@ namespace OrderManager
                     switch (Console.ReadLine().ToUpper())
                     {
                         case "Y":
-                            break;
                         case "YES":
                             break;
                         default:
@@ -155,9 +155,7 @@ namespace OrderManager
                     Console.Write("\r\nSelect an option: ");
                     switch (Console.ReadLine().ToUpper())
                     {
-                        case "Y":
-                            break;
-                        case "YES":
+                        case "Y": case "YES":
                             break;
                         default:
                             Console.WriteLine("Export cancelled. Press the return key to continue...");
@@ -180,7 +178,62 @@ namespace OrderManager
                     return true;
 
                 case "6":
-                    Console.WriteLine("You entered 6.");
+                    Console.Clear();
+                    Console.WriteLine("You entered 6. How should the orders be sorted?");
+                    Console.WriteLine();
+                    Console.WriteLine("[1]: By Date Ordered, oldest to newest");
+                    Console.WriteLine("[2]: By Date Ordered, newest to oldest");
+                    Console.WriteLine("[3]: By Date Arriving, oldest to newest");
+                    Console.WriteLine("[4]: By Date Arriving, newest to oldest");
+                    Console.Write("\r\nSelect an option: ");
+                    List<Order> sortedOrders;
+                    switch (Console.ReadLine())
+                    {
+                        case "1":
+                            sortedOrders = orders.OrderBy(x => x.OrderDate).ToList();
+                            break;
+                        case "2":
+                            sortedOrders = orders.OrderByDescending(x => x.OrderDate).ToList();
+                            break;
+                        case "3":
+                            sortedOrders = orders.OrderBy(x => x.ArrivalDate).ToList();
+                            break;
+                        case "4":
+                            sortedOrders = orders.OrderByDescending(x => x.ArrivalDate).ToList();
+                            break;
+                        default:
+                            Console.WriteLine("Invalid selection! Press the return key to continue...");
+                            Console.ReadLine();
+                            Console.Clear();
+                            return true;
+                    }
+                    
+                    DisplayAll(sortedOrders);
+                    Console.WriteLine("Would you like to export this sorted list to 'Output.txt'? (Y/n)");
+                    Console.Write("\r\nSelect an option: ");
+                    switch (Console.ReadLine().ToUpper())
+                    {
+                        case "Y":
+                        case "YES":
+                            break;
+                        default:
+                            Console.WriteLine("Export cancelled. Press the return key to continue...");
+                            Console.ReadLine();
+                            Console.Clear();
+                            return true;
+                    }
+                    FileStream fs1 = new FileStream("Output.txt", FileMode.Create);
+                    // First, save the standard output.
+                    TextWriter tmp1 = Console.Out;
+                    StreamWriter sw1 = new StreamWriter(fs1);
+                    Console.SetOut(sw1);
+                    DisplayAll(sortedOrders);
+                    Console.SetOut(tmp1);
+                    Console.WriteLine("...Success! All orders were exported to Output.txt");
+                    sw1.Close();
+                    Console.WriteLine("Press the return key to continue...");
+                    Console.ReadLine();
+                    Console.Clear();
                     return true;
                 case "7":
                     Console.WriteLine("You entered 7.");

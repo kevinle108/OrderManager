@@ -48,7 +48,7 @@ namespace OrderManager.Tests
         [TestMethod()]
         public void OrderTest2()
         {
-            string item = "picture frMethod()]ame";
+            string item = "picture frame";
             string store = "walgreens";
             double price = 3.99;
             string orderDate = "10/28";

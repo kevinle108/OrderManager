@@ -40,6 +40,22 @@ namespace OrderManager
             return new Order(arr[0].Trim(), arr[1].Trim(), Double.Parse(arr[2].Trim()), arr[3].Trim(), arr[4].Trim());
         }
 
+        public bool HasArrived()
+        {
+            return (ArrivalDate - DateTime.Now).Days < 0;
+        }
+
+        public string ArrivalStatus()
+        {
+            if (this.HasArrived())
+            {
+                return "Status: Recieved";
+            } else
+            {
+                return $"Status: Arriving in {(ArrivalDate - DateTime.Now).Days} days";
+            }
+        }
+
 
 
     }

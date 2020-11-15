@@ -62,5 +62,50 @@ namespace OrderManager.Tests
             Assert.AreEqual(DateTime.Parse(orderDate), order.OrderDate);
             Assert.AreEqual(DateTime.Parse(arrivalDate), order.ArrivalDate);
         }
+
+        [TestMethod()]
+        public void HasArrivedTest()
+        {
+            string item = "picture frame";
+            string store = "walgreens";
+            double price = 3.99;
+            string orderDate = "10/28";
+            string arrivalDate = "10/30";
+
+            var order = new Order(item, store, price, orderDate, arrivalDate);
+            var testResult = order.HasArrived();
+            Assert.IsTrue(testResult);
+            
+        }
+
+        [TestMethod()]
+        public void HasArrivedTest1()
+        {
+            string item = "picture frame, walgreens, 3.99, 10/28, 10/30";
+            Order order = Order.CreateOrder(item);
+            order.ArrivalDate = DateTime.Today.AddDays(1); // change the arrival date to tomorrow
+            var testResult = order.HasArrived();
+            Assert.IsFalse(testResult);
+
+        }
+
+        [TestMethod()]
+        public void ArrivalStatus()
+        {
+            string item = "picture frame, walgreens, 3.99, 10/28, 10/30";
+            Order order = Order.CreateOrder(item);
+            string expected = "Status: Recieved";
+            Assert.AreEqual(order.ArrivalStatus(), expected);
+        }
+
+        [TestMethod()]
+        public void ArrivalStatus1()
+        {
+            string item = "picture frame, walgreens, 3.99, 10/28, 10/30";
+            Order order = Order.CreateOrder(item);
+            order.ArrivalDate = DateTime.Today.AddDays(1); // change the arrival date to tomorrow
+            string expected = $"Status: Arriving in {(order.ArrivalDate - DateTime.Now).Days} days";
+            Assert.AreEqual(order.ArrivalStatus(), expected);
+        }
     }
 }

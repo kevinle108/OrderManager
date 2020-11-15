@@ -16,4 +16,4 @@ This is a C# console app that helps me manage my online purchases. I wanted a pr
 - Use a LINQ query to retrieve information from a data structure (such as a list or array) or file
     - uses LINQ to sort orders by date
 - Create 3 or more unit tests for your application
-    - contains 3 tests in OrderTests.cs
+    - contains 3 tests in "OrderTests.cs"

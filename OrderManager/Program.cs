@@ -33,7 +33,6 @@ namespace OrderManager
             }
 
             Console.WriteLine("Thank you for using the Order Manager Program!");
-            Console.WriteLine("Program exiting...");
         }
 
         private static bool MainMenu(List<Order> orders)
@@ -51,8 +50,7 @@ namespace OrderManager
             Console.WriteLine("[5] Export orders");
             
             Console.WriteLine("[6] Sort orders");
-            Console.WriteLine("[7] Order timeline");
-            Console.WriteLine("[8] Exit");
+            Console.WriteLine("[7] Exit");
             Console.Write("\r\nSelect an option: ");
             
 
@@ -152,26 +150,7 @@ namespace OrderManager
                     Console.Clear();
                     Console.WriteLine("You entered 5. This will export the list of orders to 'Output.txt' file.");
                     Console.WriteLine("Would you like to continue? (Y/n)");
-                    Console.Write("\r\nSelect an option: ");
-                    switch (Console.ReadLine().ToUpper())
-                    {
-                        case "Y": case "YES":
-                            break;
-                        default:
-                            Console.WriteLine("Export cancelled. Press the return key to continue...");
-                            Console.ReadLine();
-                            Console.Clear();
-                            return true;
-                    }
-                    FileStream fs = new FileStream("Output.txt", FileMode.Create);
-                    // First, save the standard output.
-                    TextWriter tmp = Console.Out;
-                    StreamWriter sw = new StreamWriter(fs);
-                    Console.SetOut(sw);
-                    DisplayAll(orders);
-                    Console.SetOut(tmp);
-                    Console.WriteLine("...Success! All orders were exported to Output.txt");
-                    sw.Close();
+                    ExportOrders(orders);
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
@@ -207,43 +186,43 @@ namespace OrderManager
                             Console.Clear();
                             return true;
                     }
-                    
                     DisplayAll(sortedOrders);
+                    Console.WriteLine();
                     Console.WriteLine("Would you like to export this sorted list to 'Output.txt'? (Y/n)");
-                    Console.Write("\r\nSelect an option: ");
-                    switch (Console.ReadLine().ToUpper())
-                    {
-                        case "Y":
-                        case "YES":
-                            break;
-                        default:
-                            Console.WriteLine("Export cancelled. Press the return key to continue...");
-                            Console.ReadLine();
-                            Console.Clear();
-                            return true;
-                    }
-                    FileStream fs1 = new FileStream("Output.txt", FileMode.Create);
-                    // First, save the standard output.
-                    TextWriter tmp1 = Console.Out;
-                    StreamWriter sw1 = new StreamWriter(fs1);
-                    Console.SetOut(sw1);
-                    DisplayAll(sortedOrders);
-                    Console.SetOut(tmp1);
-                    Console.WriteLine("...Success! All orders were exported to Output.txt");
-                    sw1.Close();
+                    ExportOrders(sortedOrders);
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
                 case "7":
-                    Console.WriteLine("You entered 7.");
-                    return true;
-                case "8":
-                    Console.WriteLine("You entered 8.");
+                    Console.WriteLine("You entered 7. Exiting program...");
                     return false;
                 default:
                     Console.Clear();
                     return true;
+            }
+        }
+
+        private static void ExportOrders(List<Order> orders)
+        {
+            Console.Write("\r\nSelect an option: ");
+            switch (Console.ReadLine().ToUpper())
+            {
+                case "Y":
+                case "YES":
+                    FileStream fs = new FileStream("Output.txt", FileMode.Create);
+                    // First, save the standard output.
+                    TextWriter tmp = Console.Out;
+                    StreamWriter sw = new StreamWriter(fs);
+                    Console.SetOut(sw);
+                    DisplayAll(orders);
+                    Console.SetOut(tmp);
+                    Console.WriteLine("...Success! All orders were exported to Output.txt");
+                    sw.Close();
+                    break;
+                default:
+                    Console.WriteLine("Export cancelled...");
+                    break;
             }
         }
 
@@ -254,11 +233,9 @@ namespace OrderManager
                 string inputAddOrder = Console.ReadLine();
                 orders.Add(Order.CreateOrder(inputAddOrder));
                 Console.WriteLine("...Success! Your order has been added.");
-
             }
             catch (Exception)
             {
-
                 Console.WriteLine("Error: The format of the order info was not correct.");
             }
         }

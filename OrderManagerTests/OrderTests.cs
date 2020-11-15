@@ -62,33 +62,5 @@ namespace OrderManager.Tests
             Assert.AreEqual(DateTime.Parse(orderDate), order.OrderDate);
             Assert.AreEqual(DateTime.Parse(arrivalDate), order.ArrivalDate);
         }
-
-
-
-        //[TestMethod()]
-        //public void CreateOrderTest()
-        //{
-        //    Assert.Fail();
-        //}
-
-        //[TestMethod()]
-        //public void DaysUntilArrive()
-        //{
-        //}
-
-        //[TestMethod()]
-        //public void Arrived()
-        //{
-        //}
-
-        //[TestMethod()]
-        //public void Cancelled()
-        //{
-        //}
-
-        //[TestMethod()]
-        //public void SortArrivingFirst()
-        //{
-        //}
     }
 }

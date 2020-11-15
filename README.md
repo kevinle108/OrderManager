@@ -14,6 +14,6 @@ This is a C# console app that helps me manage my online purchases. I wanted a pr
 - Implement a log that records errors, invalid inputs, or other important events and writes them to a text file
     - allows a List of Orders to be exported to "Output.txt"
 - Use a LINQ query to retrieve information from a data structure (such as a list or array) or file
-    - uses LINQ to sort orders by date
+    - uses LINQ to sort orders by item, store, price, and date
 - Create 3 or more unit tests for your application
     - "OrderTests.cs" contains over 6 unit tests

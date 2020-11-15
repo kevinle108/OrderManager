@@ -17,3 +17,5 @@ This is a C# console app that helps me manage my online purchases. I wanted a pr
     - uses LINQ to sort orders by item, store, price, and date
 - Create 3 or more unit tests for your application
     - "OrderTests.cs" contains over 6 unit tests
+- Calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event)
+    - Arrival Status calculates amount of days remaining from today until an order arrives

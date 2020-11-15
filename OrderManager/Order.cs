@@ -49,7 +49,7 @@ namespace OrderManager
         {
             if (this.HasArrived())
             {
-                return "Status: Recieved";
+                return "Status: Received";
             } else
             {
                 return $"Status: Arriving in {(ArrivalDate - DateTime.Now).Days} days";

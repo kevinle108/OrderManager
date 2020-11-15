@@ -50,7 +50,8 @@ namespace OrderManager
             Console.WriteLine("[5] Export orders");
             
             Console.WriteLine("[6] Sort orders");
-            Console.WriteLine("[7] Exit");
+            Console.WriteLine("[7] Arrival status");
+            Console.WriteLine("[8] Exit");
             Console.Write("\r\nSelect an option: ");
             
 
@@ -279,7 +280,19 @@ namespace OrderManager
                     Console.Clear();
                     return true;
                 case "7":
-                    Console.WriteLine("You entered 7. Exiting program...");
+                    Console.WriteLine("You entered 7. Displaying order status:");
+                    for (int i = 0; i < orders.Count; i++)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine($"{orders[i].Item} from {orders[i].Store}\r\n{orders[i].ArrivalStatus()}");
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine("Press the return key to continue...");
+                    Console.ReadLine();
+                    Console.Clear();
+                    return true;
+                case "8":
+                    Console.WriteLine("You entered 8. Exiting program...");
                     return false;
                 default:
                     Console.Clear();

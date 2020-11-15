@@ -114,7 +114,7 @@ namespace OrderManager
 
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("You entered 4. This will import orders from 'Orders.csv' file.");
+                    Console.WriteLine("You entered 4. This will import orders from 'Input.csv' file.");
                     Console.WriteLine("Would you like to continue? (Y/n)");
                     Console.Write("\r\nSelect an option: ");
                     switch (Console.ReadLine().ToUpper())
@@ -130,7 +130,7 @@ namespace OrderManager
                             return true;
                     }
 
-                    StreamReader file = new StreamReader("Orders.csv");
+                    StreamReader file = new StreamReader("Input.csv");
                     string line;
                     int counter = 1;
                     while ((line = file.ReadLine()) != null)

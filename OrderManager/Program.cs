@@ -141,6 +141,7 @@ namespace OrderManager
                         //add to orders list
                         orders.Add(Order.CreateOrder(line));
                     }
+                    file.Close();
                     Console.WriteLine("...Import successful!");
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
@@ -331,6 +332,7 @@ namespace OrderManager
                     Console.SetOut(tmp);
                     Console.WriteLine("...Success! All orders were exported to Output.txt");
                     sw.Close();
+                    fs.Close();
                     break;
                 default:
                     Console.WriteLine("Export cancelled...");

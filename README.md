@@ -1,8 +1,8 @@
 # OrderManager
-- Code Louisville C# Final Project
+Code Louisville C# Final Project
 
 ## Description
-This is a C# console app that helps me manage my online purchases. I wanted a program that allows me to store order information such as the price and arrival date of each order. This would make it easier to keep track of when orders will arrive. Using this program, a user can add, remove, and sort orders. The program also allows multiple orders to be imported from a CSV file labelled "Input.csv". Finally, order readouts can be exported to a TXT file labelled "Output.txt".
+This is a C# console app that helps me manage my online purchases. I wanted a program that allows me to store online purchase information such as the price and arrival date of each order. This would make it easier to keep track of when orders will arrive. Using this program, a user can add, remove, and sort orders. Batch orders can be imported from a CSV file labelled "Input.csv". Orrder readouts can be exported to a TXT file labelled "Output.txt". Finally, users can see how many more days til an order arrives by selecting "Order status".
 
 ## Feature Requirements met
 - Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
@@ -19,3 +19,6 @@ This is a C# console app that helps me manage my online purchases. I wanted a pr
     - "OrderTests.cs" contains over 6 unit tests
 - Calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event)
     - Arrival Status calculates amount of days remaining from today until an order arrives
+    
+    ## Author
+    Kevin Le

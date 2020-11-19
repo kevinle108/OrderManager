@@ -94,7 +94,7 @@ namespace OrderManager.Tests
         {
             string item = "picture frame, walgreens, 3.99, 10/28, 10/30";
             Order order = Order.CreateOrder(item);
-            string expected = "Status: Recieved";
+            string expected = "Status: Received";
             Assert.AreEqual(order.ArrivalStatus(), expected);
         }
 

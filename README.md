@@ -6,8 +6,8 @@ This is a C# console app that helps me manage my online purchases. I wanted a pr
 
 ## Instructions
 After cloning this repo,
-    -To run: make sure current directory is `.\OrderManager\OrderManager\` and use run the shell command `dotnet run`
-    -To test: make sure current directory is `.\OrderManager\OrderManagerTests\` and use run the shell command `dotnet test`
+    - To run: make sure current directory is `.\OrderManager\OrderManager\` and use run the shell command `dotnet run`
+    - To test: make sure current directory is `.\OrderManager\OrderManagerTests\` and use run the shell command `dotnet test`
 
 ## Feature Requirements met
 - Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program

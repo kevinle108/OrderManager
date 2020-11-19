@@ -1,0 +1,16 @@
+
+--------------------------------------------------------
+ Item: MOUSE
+ From: AMAZON
+ Price: $12.5
+ Ordered on: Friday, October 16, 2020
+ Arriving by: Monday, October 19, 2020
+--------------------------------------------------------
+
+--------------------------------------------------------
+ Item: WATER BOTTLE
+ From: WALMART
+ Price: $5.99
+ Ordered on: Friday, October 2, 2020
+ Arriving by: Saturday, October 24, 2020
+--------------------------------------------------------

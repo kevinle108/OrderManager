@@ -42,25 +42,28 @@ namespace OrderManager
             Console.WriteLine("    Navigation Menu");
             Console.WriteLine("------------------------");
             Console.WriteLine("[1] View all orders");
-
             Console.WriteLine("[2] Add an order");
             Console.WriteLine("[3] Delete an order");
-
             Console.WriteLine("[4] Import orders");
             Console.WriteLine("[5] Export orders");
-            
             Console.WriteLine("[6] Sort orders");
             Console.WriteLine("[7] Arrival status");
             Console.WriteLine("[8] Exit");
             Console.Write("\r\nSelect an option: ");
             
-
             switch (Console.ReadLine())
             {
                 case "1":
                     Console.Clear();
                     Console.WriteLine("You entered 1. Displaying all orders:");
-                    DisplayAll(orders);
+                    if (orders.Count > 0)
+                    {
+                        DisplayAll(orders);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\r\nThe Order List is empty, no orders to display...\r\n");
+                    }
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
@@ -72,46 +75,50 @@ namespace OrderManager
                     Console.WriteLine("For example:");
                     Console.WriteLine("computer, target, 495.95, 10/11, 10/19");
                     Console.Write("\r\nEnter a new order: ");
-                    ImportOrders(orders);
+                    AddOrder(orders);
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
                 case "3":
+                    Console.Clear();
                     Console.WriteLine("You entered 3. Select the order to be delete by entering the number next to the order:");
                     Console.WriteLine();
-                    for (int i = 0; i < orders.Count; i++)
-                    {
-                        Console.WriteLine($"[{i+1}]: {orders[i].Item} from {orders[i].Store} on {orders[i].OrderDate.ToString("MM/dd/yyyy")}");
-                    }
-                    Console.WriteLine();
-                    Console.Write("\r\nSelect an order to delete: ");
-                    try
-                    {
-                        int orderToDelete = Int32.Parse(Console.ReadLine());
-                        if (orderToDelete > 0 && orderToDelete <= orders.Count)
+                    if (orders.Count < 1)
+	                {
+                        Console.WriteLine("The Order List is empty, no orders to delete...\r\n");
+	                }
+                    else
+	                {
+                        for (int i = 0; i < orders.Count; i++)
                         {
-                            Console.WriteLine($"Deleting Order #{orderToDelete}...");
-                            Console.WriteLine("...Success!");
-                            orders.RemoveAt(orderToDelete - 1);
+                            Console.WriteLine($"[{i+1}]: {orders[i].Item} from {orders[i].Store} on {orders[i].OrderDate.ToString("MM/dd/yyyy")}");
                         }
-                        else
+                        Console.WriteLine();
+                        Console.Write("\r\nSelect an order to delete: ");
+                        try
+                        {    
+                            int orderToDelete = Int32.Parse(Console.ReadLine());
+                            if (orderToDelete > 0 && orderToDelete <= orders.Count)
+                            {
+                                Console.WriteLine($"Deleting Order #{orderToDelete}...");
+                                Console.WriteLine("...Success!");
+                                orders.RemoveAt(orderToDelete - 1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error: Invalid selection, no orders were deleted");
+                            }
+                        }
+                        catch (Exception)
                         {
                             Console.WriteLine("Error: Invalid selection, no orders were deleted");
                         }
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Error2: Invalid selection, no orders were deleted");
-                    }
-
-
+	                }
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
-
-
                 case "4":
                     Console.Clear();
                     Console.WriteLine("You entered 4. This will import orders from 'Input.csv' file.");
@@ -128,18 +135,15 @@ namespace OrderManager
                             Console.Clear();
                             return true;
                     }
-
                     StreamReader file = new StreamReader("Input.csv");
                     string line;
-                    int counter = 1;
+                    //int counter = 1;
                     while ((line = file.ReadLine()) != null)
                     {
                         //Console.WriteLine();
                         //Console.WriteLine($"Line: {counter} reads '{line}'");
-                        counter++;
-
-                        //add to orders list
-                        orders.Add(Order.CreateOrder(line));
+                        //counter++;
+                        orders.Add(Order.CreateOrder(line)); //add to orders list
                     }
                     file.Close();
                     Console.WriteLine("...Import successful!");
@@ -147,7 +151,6 @@ namespace OrderManager
                     Console.ReadLine();
                     Console.Clear();
                     return true;
-
                 case "5":
                     Console.Clear();
                     Console.WriteLine("You entered 5. This will export the list of orders to 'Output.txt' file.");
@@ -157,7 +160,6 @@ namespace OrderManager
                     Console.ReadLine();
                     Console.Clear();
                     return true;
-
                 case "6":
                     Console.Clear();
                     Console.WriteLine("You entered 6. How should the orders be sorted?");
@@ -275,12 +277,12 @@ namespace OrderManager
                             InvalidSelectionPrompt();
                             return true;
                     }
-                    
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
                     return true;
                 case "7":
+                    Console.Clear();
                     Console.WriteLine("You entered 7. Displaying order status:");
                     for (int i = 0; i < orders.Count; i++)
                     {
@@ -340,13 +342,21 @@ namespace OrderManager
             }
         }
 
-        private static void ImportOrders(List<Order> orders)
+        private static void AddOrder(List<Order> orders)
         {
             try
             {
                 string inputAddOrder = Console.ReadLine();
-                orders.Add(Order.CreateOrder(inputAddOrder));
-                Console.WriteLine("...Success! Your order has been added.");
+                Order order = Order.CreateOrder(inputAddOrder);
+                if (order.OrderDate > order.ArrivalDate)
+	            {
+                    Console.WriteLine("Error: The Arrival Date cannot occur before the Order Date...");
+	            }
+                else
+	            {
+                    orders.Add(order);
+                    Console.WriteLine("...Success! Your order has been added.");
+	            }
             }
             catch (Exception)
             {

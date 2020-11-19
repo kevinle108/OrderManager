@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,7 +17,7 @@ namespace OrderManager
         {
             Item = item.ToUpper();
             Store = store.ToUpper();
-            Price = price;
+            Price = Math.Round(price, 2, MidpointRounding.AwayFromZero);
             OrderDate = DateTime.Parse(orderDate);
             ArrivalDate = DateTime.Parse(arrivalDate);
         }

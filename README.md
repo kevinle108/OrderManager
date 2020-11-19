@@ -21,7 +21,7 @@ After cloning this repo,
 - Use a LINQ query to retrieve information from a data structure (such as a list or array) or file
     - uses LINQ to sort orders by item, store, price, and date
 - Create 3 or more unit tests for your application
-    - "OrderTests.cs" contains over 6 unit tests
+    - "OrderTests.cs" contains over 7 unit tests
 - Calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event)
     - Arrival Status calculates amount of days remaining from today until an order arrives
     

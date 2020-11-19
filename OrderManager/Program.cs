@@ -13,10 +13,11 @@ namespace OrderManager
         {
             // display heading for program
             Console.WriteLine();
-            Console.WriteLine("*******************************************************");
-            Console.WriteLine("        Welcome to the Order Manager Program       ");
-            Console.WriteLine("*******************************************************");
-            Console.WriteLine("This app will help you keep track of your online purchases and when they will arrive");
+            Console.WriteLine("*********************************************");
+            Console.WriteLine("    Welcome to the Order Manager Program");
+            Console.WriteLine("*********************************************");
+            Console.WriteLine("This app will help you keep track of your");
+            Console.WriteLine("online purchases and when they will arrive.");
 
             // create 2 sample orders 
             Order order0 = Order.CreateOrder("mouse,amazon,12.50,10/16,10/19"); 
@@ -31,16 +32,14 @@ namespace OrderManager
             {
                 showMenu = MainMenu(orders);
             }
-
             Console.WriteLine("Thank you for using the Order Manager Program!");
         }
 
         private static bool MainMenu(List<Order> orders)
         {
-
-            Console.WriteLine("\r\n------------------------");
-            Console.WriteLine("    Navigation Menu");
-            Console.WriteLine("------------------------");
+            Console.WriteLine("\r\n--------------------");
+            Console.WriteLine("  Navigation Menu");
+            Console.WriteLine("--------------------");
             Console.WriteLine("[1] View all orders");
             Console.WriteLine("[2] Add an order");
             Console.WriteLine("[3] Delete an order");
@@ -71,9 +70,9 @@ namespace OrderManager
                 case "2":
                     Console.Clear();
                     Console.WriteLine("You entered 2. To add an order, please enter the order info in the following format:");
-                    Console.WriteLine("item, store, cost (exclude $ sign), order date (month/day), arrival date (month/day)");
+                    Console.WriteLine("item, store, cost (exclude $ sign), order-date(mm/dd/yy), arrival-date(mm/dd/yy)");
                     Console.WriteLine("For example:");
-                    Console.WriteLine("computer, target, 495.95, 10/11, 10/19");
+                    Console.WriteLine("computer, target, 495.95, 10/11/20, 10/19/20");
                     Console.Write("\r\nEnter a new order: ");
                     AddOrder(orders);
                     Console.WriteLine("Press the return key to continue...");
@@ -184,8 +183,8 @@ namespace OrderManager
                         {
                             case "1":
                                 Console.WriteLine("Ok. Sort by Item Name, in which order?");
-                                Console.WriteLine("[1]: ascending to descending");
-                                Console.WriteLine("[2]: descending to ascending");
+                                Console.WriteLine("[1]: A to Z");
+                                Console.WriteLine("[2]: Z to A");
                                 Console.Write("\r\nSelect an option: ");
                                 switch (Console.ReadLine())
                                 {
@@ -204,8 +203,8 @@ namespace OrderManager
                                 break;
                             case "2":
                                 Console.WriteLine("Ok. Sort by Store Name, in which order?");
-                                Console.WriteLine("[1]: ascending to descending");
-                                Console.WriteLine("[2]: descending to ascending");
+                                Console.WriteLine("[1]: A to Z");
+                                Console.WriteLine("[2]: Z to A");
                                 Console.Write("\r\nSelect an option: ");
                                 switch (Console.ReadLine())
                                 {
@@ -224,8 +223,8 @@ namespace OrderManager
                                 break;
                             case "3":
                                 Console.WriteLine("Ok. Sort by Price, in which order?");
-                                Console.WriteLine("[1]: lowest to highest");
-                                Console.WriteLine("[2]: highest to lowest");
+                                Console.WriteLine("[1]: low to high");
+                                Console.WriteLine("[2]: high to low");
                                 Console.Write("\r\nSelect an option: ");
                                 switch (Console.ReadLine())
                                 {
@@ -244,8 +243,8 @@ namespace OrderManager
                                 break;
                             case "4":
                                 Console.WriteLine("Ok. Sort by Date Ordered, in which way?");
-                                Console.WriteLine("[1]: oldest to newest");
-                                Console.WriteLine("[2]: newest to oldest");
+                                Console.WriteLine("[1]: old to new");
+                                Console.WriteLine("[2]: new to old");
                                 Console.Write("\r\nSelect an option: ");
                                 switch (Console.ReadLine())
                                 {
@@ -264,8 +263,8 @@ namespace OrderManager
                                 break;
                             case "5":
                                 Console.WriteLine("Ok. Sort by Date Arriving, in which way?");
-                                Console.WriteLine("[1]: oldest to newest");
-                                Console.WriteLine("[2]: newest to oldest");
+                                Console.WriteLine("[1]: old to new");
+                                Console.WriteLine("[2]: new to old");
                                 Console.Write("\r\nSelect an option: ");
                                 switch (Console.ReadLine())
                                 {

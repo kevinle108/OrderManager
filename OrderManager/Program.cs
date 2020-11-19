@@ -84,11 +84,7 @@ namespace OrderManager
                     Console.Clear();
                     Console.WriteLine("You entered 3. Select the order to be delete by entering the number next to the order:");
                     Console.WriteLine();
-                    if (orders.Count < 1)
-	                {
-                        Console.WriteLine("The Order List is empty, no orders to delete...\r\n");
-	                }
-                    else
+                    if (orders.Count > 0)
 	                {
                         for (int i = 0; i < orders.Count; i++)
                         {
@@ -113,7 +109,11 @@ namespace OrderManager
                         catch (Exception)
                         {
                             Console.WriteLine("Error: Invalid selection, no orders were deleted");
-                        }
+                        }                       
+	                }
+                    else
+	                {
+                        Console.WriteLine("The Order List is empty, no orders to delete...\r\n");
 	                }
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
@@ -154,8 +154,15 @@ namespace OrderManager
                 case "5":
                     Console.Clear();
                     Console.WriteLine("You entered 5. This will export the list of orders to 'Output.txt' file.");
-                    Console.WriteLine("Would you like to continue? (Y/n)");
-                    ExportOrders(orders);
+                    if (orders.Count > 0)
+                    {
+                        Console.WriteLine("Would you like to continue? (Y/n)");
+                        ExportOrders(orders);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\r\nThe Order List is empty, no orders to export...\r\n");
+                    }
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();
@@ -163,119 +170,126 @@ namespace OrderManager
                 case "6":
                     Console.Clear();
                     Console.WriteLine("You entered 6. How should the orders be sorted?");
-                    Console.WriteLine();
-                    Console.WriteLine("[1]: By Item Name");
-                    Console.WriteLine("[2]: By Store Name");
-                    Console.WriteLine("[3]: By Price");
-                    Console.WriteLine("[4]: By Date Ordered");
-                    Console.WriteLine("[5]: By Date Arriving");
-                    Console.Write("\r\nSelect an option: ");
-                    List<Order> sortedOrders;
-                    switch (Console.ReadLine())
+                    if (orders.Count > 0)
                     {
-                        case "1":
-                            Console.WriteLine("Ok. Sort by Item Name, in which order?");
-                            Console.WriteLine("[1]: ascending to descending");
-                            Console.WriteLine("[2]: descending to ascending");
-                            Console.Write("\r\nSelect an option: ");
-                            switch (Console.ReadLine())
-                            {
-                                case "1":
-                                    sortedOrders = orders.OrderBy(x => x.Item).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                case "2":
-                                    sortedOrders = orders.OrderByDescending(x => x.Item).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                default:
-                                    InvalidSelectionPrompt();
-                                    return true;
-                            }
-                            break;
-                        case "2":
-                            Console.WriteLine("Ok. Sort by Store Name, in which order?");
-                            Console.WriteLine("[1]: ascending to descending");
-                            Console.WriteLine("[2]: descending to ascending");
-                            Console.Write("\r\nSelect an option: ");
-                            switch (Console.ReadLine())
-                            {
-                                case "1":
-                                    sortedOrders = orders.OrderBy(x => x.Store).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                case "2":
-                                    sortedOrders = orders.OrderByDescending(x => x.Store).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                default:
-                                    InvalidSelectionPrompt();
-                                    return true;
-                            }
-                            break;
-                        case "3":
-                            Console.WriteLine("Ok. Sort by Price, in which order?");
-                            Console.WriteLine("[1]: lowest to highest");
-                            Console.WriteLine("[2]: highest to lowest");
-                            Console.Write("\r\nSelect an option: ");
-                            switch (Console.ReadLine())
-                            {
-                                case "1":
-                                    sortedOrders = orders.OrderBy(x => x.Price).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                case "2":
-                                    sortedOrders = orders.OrderByDescending(x => x.Price).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                default:
-                                    InvalidSelectionPrompt();
-                                    return true;
-                            }
-                            break;
-                        case "4":
-                            Console.WriteLine("Ok. Sort by Date Ordered, in which way?");
-                            Console.WriteLine("[1]: oldest to newest");
-                            Console.WriteLine("[2]: newest to oldest");
-                            Console.Write("\r\nSelect an option: ");
-                            switch (Console.ReadLine())
-                            {
-                                case "1":
-                                    sortedOrders = orders.OrderBy(x => x.OrderDate).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                case "2":
-                                    sortedOrders = orders.OrderByDescending(x => x.OrderDate).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                default:
-                                    InvalidSelectionPrompt();
-                                    return true;
-                            }
-                            break;
-                        case "5":
-                            Console.WriteLine("Ok. Sort by Date Arriving, in which way?");
-                            Console.WriteLine("[1]: oldest to newest");
-                            Console.WriteLine("[2]: newest to oldest");
-                            Console.Write("\r\nSelect an option: ");
-                            switch (Console.ReadLine())
-                            {
-                                case "1":
-                                    sortedOrders = orders.OrderBy(x => x.ArrivalDate).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                case "2":
-                                    sortedOrders = orders.OrderByDescending(x => x.ArrivalDate).ToList();
-                                    DisplaySortAndAskExport(sortedOrders);
-                                    break;
-                                default:
-                                    InvalidSelectionPrompt();
-                                    return true;
-                            }
-                            break;
-                        default:
-                            InvalidSelectionPrompt();
-                            return true;
+                        Console.WriteLine();
+                        Console.WriteLine("[1]: By Item Name");
+                        Console.WriteLine("[2]: By Store Name");
+                        Console.WriteLine("[3]: By Price");
+                        Console.WriteLine("[4]: By Date Ordered");
+                        Console.WriteLine("[5]: By Date Arriving");
+                        Console.Write("\r\nSelect an option: ");
+                        List<Order> sortedOrders;
+                        switch (Console.ReadLine())
+                        {
+                            case "1":
+                                Console.WriteLine("Ok. Sort by Item Name, in which order?");
+                                Console.WriteLine("[1]: ascending to descending");
+                                Console.WriteLine("[2]: descending to ascending");
+                                Console.Write("\r\nSelect an option: ");
+                                switch (Console.ReadLine())
+                                {
+                                    case "1":
+                                        sortedOrders = orders.OrderBy(x => x.Item).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    case "2":
+                                        sortedOrders = orders.OrderByDescending(x => x.Item).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    default:
+                                        InvalidSelectionPrompt();
+                                        return true;
+                                }
+                                break;
+                            case "2":
+                                Console.WriteLine("Ok. Sort by Store Name, in which order?");
+                                Console.WriteLine("[1]: ascending to descending");
+                                Console.WriteLine("[2]: descending to ascending");
+                                Console.Write("\r\nSelect an option: ");
+                                switch (Console.ReadLine())
+                                {
+                                    case "1":
+                                        sortedOrders = orders.OrderBy(x => x.Store).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    case "2":
+                                        sortedOrders = orders.OrderByDescending(x => x.Store).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    default:
+                                        InvalidSelectionPrompt();
+                                        return true;
+                                }
+                                break;
+                            case "3":
+                                Console.WriteLine("Ok. Sort by Price, in which order?");
+                                Console.WriteLine("[1]: lowest to highest");
+                                Console.WriteLine("[2]: highest to lowest");
+                                Console.Write("\r\nSelect an option: ");
+                                switch (Console.ReadLine())
+                                {
+                                    case "1":
+                                        sortedOrders = orders.OrderBy(x => x.Price).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    case "2":
+                                        sortedOrders = orders.OrderByDescending(x => x.Price).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    default:
+                                        InvalidSelectionPrompt();
+                                        return true;
+                                }
+                                break;
+                            case "4":
+                                Console.WriteLine("Ok. Sort by Date Ordered, in which way?");
+                                Console.WriteLine("[1]: oldest to newest");
+                                Console.WriteLine("[2]: newest to oldest");
+                                Console.Write("\r\nSelect an option: ");
+                                switch (Console.ReadLine())
+                                {
+                                    case "1":
+                                        sortedOrders = orders.OrderBy(x => x.OrderDate).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    case "2":
+                                        sortedOrders = orders.OrderByDescending(x => x.OrderDate).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    default:
+                                        InvalidSelectionPrompt();
+                                        return true;
+                                }
+                                break;
+                            case "5":
+                                Console.WriteLine("Ok. Sort by Date Arriving, in which way?");
+                                Console.WriteLine("[1]: oldest to newest");
+                                Console.WriteLine("[2]: newest to oldest");
+                                Console.Write("\r\nSelect an option: ");
+                                switch (Console.ReadLine())
+                                {
+                                    case "1":
+                                        sortedOrders = orders.OrderBy(x => x.ArrivalDate).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    case "2":
+                                        sortedOrders = orders.OrderByDescending(x => x.ArrivalDate).ToList();
+                                        DisplaySortAndAskExport(sortedOrders);
+                                        break;
+                                    default:
+                                        InvalidSelectionPrompt();
+                                        return true;
+                                }
+                                break;
+                            default:
+                                InvalidSelectionPrompt();
+                                return true;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("\r\nThe Order List is empty, no orders to sort...\r\n");
                     }
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
@@ -284,12 +298,19 @@ namespace OrderManager
                 case "7":
                     Console.Clear();
                     Console.WriteLine("You entered 7. Displaying order status:");
-                    for (int i = 0; i < orders.Count; i++)
+                    if (orders.Count > 0)
                     {
+                        for (int i = 0; i < orders.Count; i++)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine($"{orders[i].Item} from {orders[i].Store}\r\n{orders[i].ArrivalStatus()}");
+                        }
                         Console.WriteLine();
-                        Console.WriteLine($"{orders[i].Item} from {orders[i].Store}\r\n{orders[i].ArrivalStatus()}");
                     }
-                    Console.WriteLine();
+                    else
+                    {
+                        Console.WriteLine("\r\nThe Order List is empty, no orders to display...\r\n");
+                    }
                     Console.WriteLine("Press the return key to continue...");
                     Console.ReadLine();
                     Console.Clear();

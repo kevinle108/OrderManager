@@ -2,7 +2,12 @@
 Kevin Le's C# Project for Code Louisville Fall 2020
 
 ## Description
-This is a C# console app that helps me manage my online purchases. I wanted a program that allows me to store online purchase information such as the price and arrival date of each order. This would make it easier to keep track of when orders will arrive. Using this program, a user can add, remove, and sort orders. Batch orders can be imported from a CSV file labelled "Input.csv". Orrder readouts can be exported to a TXT file labelled "Output.txt". Finally, users can see how many more days til an order arrives by selecting "Arrival Status".
+This is a C# console app that helps me manage my online purchases. I wanted a program that allows me to store online purchase information such as the price and arrival date of each order. This would make it easier to keep track of when orders will arrive. Using this program, a user can add, remove, and sort orders. Batch orders can be imported from a CSV file labelled "Input.csv". Order readouts can be exported to a TXT file labelled "Output.txt". Finally, users can see how many more days til an order arrives by selecting "Arrival Status".
+
+## Instructions
+After cloning this repo,
+    -To run: make sure current directory is `.\OrderManager\OrderManager\` and use run the shell command `dotnet run`
+    -To test: make sure current directory is `.\OrderManager\OrderManagerTests\` and use run the shell command `dotnet test`
 
 ## Feature Requirements met
 - Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
